@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import SideMenu from './components/menu/SideMenu/SideMenu';
+import Home from './components/home/Home';
 
 class App extends Component {
   render() {
     return (
       <div className='app'>
-        <SideMenu />
+        <Home />
       </div>
     );
   }
