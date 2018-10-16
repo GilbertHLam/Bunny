@@ -3,13 +3,13 @@ import './App.css';
 import Home from './components/home/Home';
 
 class App extends Component {
-  render() {
-    return (
-      <div className='app'>
-        <Home />
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div className='app'>
+				<Home />
+			</div>
+		);
+	}
 }
 
 export default App;
