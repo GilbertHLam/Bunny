@@ -9,7 +9,7 @@ class ImperfectButton extends Component {
 
 	render() {
 		return (
-			<div className='button'>
+			<div className='button' onClick={this.props.onClick}>
 				{this.buttonText}
 			</div>
 		);

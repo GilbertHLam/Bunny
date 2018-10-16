@@ -1,0 +1,16 @@
+.play {
+  height: 100vh;
+  width: 100%;
+  background-color:  #68AA52;
+}
+
+.canvas {
+	background-color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	height: 70%;
+	width:50%;
+}
