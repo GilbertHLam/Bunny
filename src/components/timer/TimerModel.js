@@ -17,13 +17,15 @@ export const TimerModel = types
             },
             actions: {
                 startTimer(){
-                    self.timer = setInterval(() => {
-                        self.setTimeLimit(self.timeLimit-1);
-                        if(self.timeLimit === 0) {
-                            clearInterval(self.timer);
-                            self.onTimerEnd();
-                        }
-                    }, 1000);
+                    if(!self.timer) {
+                        self.timer = setInterval(() => {
+                            self.setTimeLimit(self.timeLimit-1);
+                            if(self.timeLimit === 0) {
+                                clearInterval(self.timer);
+                                self.onTimerEnd();
+                            }
+                        }, 1000);
+                    }
                 },
 
                 setTimeLimit(newLimit) {

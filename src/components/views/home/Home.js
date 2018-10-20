@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ImperfectButton from '../buttons/ImperfectButton';
+import ImperfectButton from '../../buttons/ImperfectButton';
 import './Home.css';
-import FrenchLop from '../../images/frenchlop.png';
+import FrenchLop from '../../../images/frenchlop.png';
 import {
 	Link
 } from 'react-router-dom'

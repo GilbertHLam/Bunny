@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Home from './components/home/Home';
+import Home from './components/views/home/Home';
 import { Route } from 'react-router-dom';
-import Play from './components/play/Play';
+import Play from './components/views/play/Play';
 
 class App extends Component {
 	render() {
