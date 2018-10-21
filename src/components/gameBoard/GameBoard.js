@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import './Canvas.css';
+import './GameBoard.css';
 import Timer from '../timer/Timer';
 import { TimerModel } from '../timer/TimerModel';
+import { CanvasModel } from '../gameBoard/CanvasModel';
 import ImperfectButton from '../buttons/ImperfectButton';
+import Canvas from './Canvas';
 import classNames from 'classnames';
 
 import PropTypes from 'prop-types';
 
-class Canvas extends Component {
+class GameBoard extends Component {
 
 	constructor(props) {
 		super(props);
@@ -15,9 +17,14 @@ class Canvas extends Component {
 		this.onClickHandler = this.onClickHandler.bind(this);
 		this.onTimerEnd = this.onTimerEnd.bind(this);
 		this.timerModel = TimerModel.create({
-			timeLimit: 30,
+			timeLimit: 60,
 			timerOn: false,
 			onTimerEnd : this.onTimerEnd
+		});
+
+		this.canvasModel = CanvasModel.create({
+			brushColor: 'Black',
+			lineWidth: 3
 		});
 		this.timerModel.setOnTimerEnd(this.onTimerEnd);
 	}
@@ -30,21 +37,26 @@ class Canvas extends Component {
 		});
 
 		return (
-			<div className='canvas notActive'>
-				<Timer 
-					model={this.timerModel}
+			<div className='canvas-container'>
+				<Canvas 
+					model={this.canvasModel}
 				/>
-				<div className={classes}>
-					{'Here are some instructions'}
-					{'Here are some instructions'}
-					{'Here are some instructions'}
-					{'Here are some instructions'}
-					{'Here are some instructions'}
-					{'Here are some instructions'}
-					<ImperfectButton
-						buttonText={'Start'}
-						onClick={this.onClickHandler}
+				<div className='canvas-overlay' onMouseDown={this.onMouseDown}>
+					<Timer 
+						model={this.timerModel}
 					/>
+					<div className={classes}>
+						{'Here are some instructions/n'}
+						{'Here are some instructions'}
+						{'Here are some instructions'}
+						{'Here are some instructions'}
+						{'Here are some instructions'}
+						{'Here are some instructions'}
+						<ImperfectButton
+							buttonText={'Start'}
+							onClick={this.onClickHandler}
+						/>
+					</div>
 				</div>
 			</div>
 		);
@@ -63,9 +75,9 @@ class Canvas extends Component {
 	
 }
 
-export default Canvas;
+export default GameBoard;
 
-Canvas.propTypes = {
+GameBoard.propTypes = {
 	buttonText : PropTypes.string,
 	disabled: PropTypes.bool,
 	onClick : PropTypes.func

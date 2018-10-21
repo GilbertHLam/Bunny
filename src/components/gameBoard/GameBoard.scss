@@ -1,16 +1,16 @@
-.canvas {
-    background-color: white;
-	height: 90%;
+.canvas-container {
+    position:relative;
+    height: 90%;
     width:90%;
-    border-color: black;
-    border-style: solid;
-    border-width: 7px;
-    border-radius: 15px 225px 15px 225px/225px 15px 225px 15px;
-    
+}
+
+.canvas-overlay {
+    z-index: 100;
+    position: relative;
 }
 
 .instructions {
-    background-color: rgba(0,0,0,.5);
+    background-color: #f8f3de;
     width: 50%;
     height: auto;
     cursor: crosshair;
@@ -35,6 +35,10 @@
 
 .notActive {
     cursor: not-allowed;
+}
+
+.active {
+    cursor: crosshair;
 }
 
 .disabled {
