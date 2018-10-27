@@ -27,9 +27,12 @@
     border-radius: 105px 235px 11px 25px/25px 41px 215px 95px;
     font-family: 'Amatic SC', cursive;
     font-size: 65px;
+    display: flex;
+    flex-direction: column;
 
     .button {
         align-self: center;
+        pointer-events: all;
     }
 }
 
@@ -42,5 +45,10 @@
 }
 
 .disabled {
-    display: none;
+    display:none;
+}
+
+.drawing-disabled {
+    pointer-events: none;
+    cursor: not-allowed;
 }
