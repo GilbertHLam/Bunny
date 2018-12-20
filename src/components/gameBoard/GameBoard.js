@@ -46,7 +46,7 @@ class GameBoard extends Component {
 						model={this.timerModel}
 					/>
 					<div className={classes}>
-						{'Here are some instructions/n'}
+						{'Here are some instructions'}
 						{'Here are some instructions'}
 						{'Here are some instructions'}
 						{'Here are some instructions'}

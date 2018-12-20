@@ -28,10 +28,6 @@ export const CanvasModel = types
                     self.context = newContext;
                 },
 
-                updateCoordinates(newX, newY) {
-
-                },
-
                 setDrawing(isDrawing) {
                     self.drawingInProgress = isDrawing;
                 },
