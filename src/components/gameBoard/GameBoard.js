@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import './GameBoard.css';
 import Timer from '../timer/Timer';
 import { TimerModel } from '../timer/TimerModel';
-import { CanvasModel } from '../gameBoard/CanvasModel';
 import ImperfectButton from '../buttons/ImperfectButton';
 import Canvas from './Canvas';
 import classNames from 'classnames';
-
+import {observer} from "mobx-react";
 import PropTypes from 'prop-types';
 
-class GameBoard extends Component {
+const GameBoard = observer(class GameBoard extends Component {
 
 	constructor(props) {
 		super(props);
@@ -17,15 +16,11 @@ class GameBoard extends Component {
 		this.onClickHandler = this.onClickHandler.bind(this);
 		this.onTimerEnd = this.onTimerEnd.bind(this);
 		this.timerModel = TimerModel.create({
-			timeLimit: 60,
+			timeLimit: 10,
 			timerOn: false,
 			onTimerEnd : this.onTimerEnd
 		});
 
-		this.canvasModel = CanvasModel.create({
-			brushColor: 'Black',
-			lineWidth: 3
-		});
 		this.timerModel.setOnTimerEnd(this.onTimerEnd);
 	}
 
@@ -36,10 +31,15 @@ class GameBoard extends Component {
 			disabled : this.state.buttonDisabled
 		});
 
+		let containerClasses = classNames({
+			'drawing-disabled' : !this.props.canvasModel.isDrawingAllowed(),
+			'canvas-container' : true
+		});
+
 		return (
-			<div className='canvas-container'>
+			<div className={containerClasses}>
 				<Canvas 
-					model={this.canvasModel}
+					model={this.props.canvasModel}
 				/>
 				<div className='canvas-overlay' onMouseDown={this.onMouseDown}>
 					<Timer 
@@ -65,20 +65,25 @@ class GameBoard extends Component {
 	onClickHandler(event) {
 		this.timerModel.startTimer();
 		this.setState({ buttonDisabled : true});
+		this.props.canvasModel.setDrawingAllowed(true);
 		event.preventDefault();
 	}
 
+	disableDrawing() {
+		this.props.canvasModel.setDrawingAllowed(false);
+	}
+
 	onTimerEnd(){
-		alert('Timer is done.');
+		this.disableDrawing();
+		const dataURL = this.props.canvasModel.canvas.toDataURL();
+		console.log(dataURL);
 	}
 
 	
-}
+});
 
 export default GameBoard;
 
 GameBoard.propTypes = {
-	buttonText : PropTypes.string,
-	disabled: PropTypes.bool,
-	onClick : PropTypes.func
+	canvasModel: PropTypes.any.isRequired
 }

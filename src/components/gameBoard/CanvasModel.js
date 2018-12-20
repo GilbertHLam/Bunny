@@ -9,6 +9,7 @@ export const CanvasModel = types
         canvas: null,
         context: null,
         drawingInProgress: false,
+        drawingAllowed: false,
         lastCoordinate: []
     }))
     .extend((self) => {
@@ -16,8 +17,11 @@ export const CanvasModel = types
             views: {
                 isDrawing(){
                     return self.drawingInProgress;
+                },
+
+                isDrawingAllowed(){
+                    return self.drawingAllowed;
                 }
-                
             },
             actions: {
                 setCanvas(newCanvas) {
