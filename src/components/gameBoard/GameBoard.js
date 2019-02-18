@@ -7,6 +7,8 @@ import Canvas from './Canvas';
 import classNames from 'classnames';
 import {observer} from "mobx-react";
 import PropTypes from 'prop-types';
+const axios = require('axios');
+
 
 const GameBoard = observer(class GameBoard extends Component {
 
@@ -16,7 +18,7 @@ const GameBoard = observer(class GameBoard extends Component {
 		this.onClickHandler = this.onClickHandler.bind(this);
 		this.onTimerEnd = this.onTimerEnd.bind(this);
 		this.timerModel = TimerModel.create({
-			timeLimit: 10,
+			timeLimit: 60,
 			timerOn: false,
 			onTimerEnd : this.onTimerEnd
 		});
@@ -75,8 +77,16 @@ const GameBoard = observer(class GameBoard extends Component {
 
 	onTimerEnd(){
 		this.disableDrawing();
-		const dataURL = this.props.canvasModel.canvas.toDataURL();
-		console.log(dataURL);
+		const dataURL = this.props.canvasModel.canvas.toDataURL().substring(22);
+		axios.post('http://localhost:4000/analyzeImage', {
+			image: dataURL
+		  })
+		  .then(function (response) {
+			alert(response.data);
+		  })
+		  .catch(function (error) {
+			console.log(error);
+		  });
 	}
 
 	

@@ -39,6 +39,10 @@ export const CanvasModel = types
                 setLastCoordinates(coordinate) {
                     self.lastCoordinate[0] = coordinate[0];
                     self.lastCoordinate[1] = coordinate[1];
+                },
+
+                setDrawingAllowed(drawingAllowed) {
+                    self.drawingAllowed = drawingAllowed;
                 }
             }
         }
