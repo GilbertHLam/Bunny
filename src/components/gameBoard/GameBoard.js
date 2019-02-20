@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import './GameBoard.css';
 import Timer from '../timer/Timer';
 import { TimerModel } from '../timer/TimerModel';
@@ -14,11 +15,11 @@ const GameBoard = observer(class GameBoard extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = { buttonDisabled: false }
+		this.state = { buttonDisabled: false, redirectToScorePage: false, userScore: 0, userImage: ''};
 		this.onClickHandler = this.onClickHandler.bind(this);
 		this.onTimerEnd = this.onTimerEnd.bind(this);
 		this.timerModel = TimerModel.create({
-			timeLimit: 60,
+			timeLimit: 30,
 			timerOn: false,
 			onTimerEnd : this.onTimerEnd
 		});
@@ -38,6 +39,13 @@ const GameBoard = observer(class GameBoard extends Component {
 			'canvas-container' : true
 		});
 
+		if (this.state.redirectToScorePage) {
+			return <Redirect to={{
+				pathname: '/score',
+				state: { userScore: this.state.userScore, image: this.state.userImage }
+			}}/>;
+		}
+
 		return (
 			<div className={containerClasses}>
 				<Canvas 
@@ -48,12 +56,10 @@ const GameBoard = observer(class GameBoard extends Component {
 						model={this.timerModel}
 					/>
 					<div className={classes}>
-						{'Here are some instructions'}
-						{'Here are some instructions'}
-						{'Here are some instructions'}
-						{'Here are some instructions'}
-						{'Here are some instructions'}
-						{'Here are some instructions'}
+						<p>
+							{'You\'ll have 30 seconds to draw a bunny!'}
+						</p>
+						
 						<ImperfectButton
 							buttonText={'Start'}
 							onClick={this.onClickHandler}
@@ -78,11 +84,12 @@ const GameBoard = observer(class GameBoard extends Component {
 	onTimerEnd(){
 		this.disableDrawing();
 		const dataURL = this.props.canvasModel.canvas.toDataURL().substring(22);
+		this.setState({userImage : dataURL});
 		axios.post('http://localhost:4000/analyzeImage', {
 			image: dataURL
 		  })
-		  .then(function (response) {
-			alert(response.data);
+		  .then((response) => {
+			this.setState({userScore : Math.round(Math.pow(response.data.score,6)*100*100)/100, redirectToScorePage: true});
 		  })
 		  .catch(function (error) {
 			console.log(error);

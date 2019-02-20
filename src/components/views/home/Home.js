@@ -17,7 +17,7 @@ class Home extends Component {
 					<Link to={'/play'}>
 						<ImperfectButton
 							onClick={this._handlePlayClick}
-							buttonText={'Play'}
+							buttonText={'Yes'}
 						/>
 					</Link>
 					<ImperfectButton
