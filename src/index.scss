@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,800');
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+* { padding: 0; margin: 0; }
+html, body, #root {
+    min-height: 100% !important;
+    height: 100%;
 }

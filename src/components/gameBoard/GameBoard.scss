@@ -1,0 +1,54 @@
+.canvas-container {
+    position:relative;
+    height: 90%;
+    width:90%;
+}
+
+.canvas-overlay {
+    z-index: 100;
+    position: relative;
+}
+
+.instructions {
+    background-color: #f8f3de;
+    width: 50%;
+    height: auto;
+    cursor: crosshair;
+    border: 2px solid white;
+    padding: 20px;
+    margin: auto;
+    align-self: center;
+    align-content: center;
+    align-items: center;
+    text-align: center; 
+    border-color: black;
+    border-style: solid;
+    border-width: 7px;
+    border-radius: 105px 235px 11px 25px/25px 41px 215px 95px;
+    font-family: 'Amatic SC', cursive;
+    font-size: 65px;
+    display: flex;
+    flex-direction: column;
+
+    .button {
+        align-self: center;
+        pointer-events: all;
+    }
+}
+
+.notActive {
+    cursor: not-allowed;
+}
+
+.active {
+    cursor: crosshair;
+}
+
+.disabled {
+    display:none;
+}
+
+.drawing-disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+}
