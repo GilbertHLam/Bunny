@@ -1,0 +1,42 @@
+.info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-family: 'Amatic SC', cursive;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.image {
+    height: 200px;
+    width: 400px;
+}
+
+.drawing {
+    display: flex;
+    flex-direction: column;
+    border-color: black;
+    background: white;
+    border-style: solid;
+    border-width: 7px;
+}
+
+.one {
+    border-radius: 105px 235px 11px 25px/25px 41px 215px 95px;
+}
+
+.two {
+    border-radius: 65px 25px 37px 25px/60px 60px 245px 75px;
+}
+
+.three {
+    border-radius: 235px 11px 25px 85px/25px 211px 95px 95px;
+}
+
+.four {
+    border-radius: 10px 235px 11px 10px/25px 10px 200px 200px;
+}
+
+.five {
+    border-radius: 51px 115px 6px 12px/12px 20px 115px 45px;
+}
