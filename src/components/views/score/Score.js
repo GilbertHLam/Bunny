@@ -12,7 +12,6 @@ class Score extends Component {
 	}
 	
 	render() {
-        console.log(this.props);
 		return (
 			<div className='score'>
                 <h1>
@@ -27,9 +26,11 @@ class Score extends Component {
 							buttonText={'Try Again'}
 						/>
 					</Link>
-					<ImperfectButton
-						buttonText={'View Top Drawings'}
-					/>
+					<Link to={'/highscores'}>
+						<ImperfectButton
+							buttonText={'View High Scores'}
+						/>
+					</Link>
 				</div>
 			</div>
 		);
